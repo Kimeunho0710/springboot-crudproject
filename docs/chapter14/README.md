@@ -13,10 +13,15 @@ JpaRepository는 ListCrudRepository와 ListPagingAndSortingRepository를 상속�
 
 ## 댓글 엔티티 만들기
 1.Comment클래스는 엔티티로 사용하므로 @Entity 어노테이션을 붙인다 그리고 클래스에서 사용할 다른 기능도 미리 예상해 @Getter,@ToString,@AllArgsConstructor,@NoArgsConstructor 어노테이션도 추가를 한다.   
+
 2.Comment엔티티는 id(대표키),article(댓글의 부모 게시글),nickname(댓글을 단 사람),body(댓글 본문)로 구성됩니다.   
+
 3.id 필드에 @Id를 붙여 이 필드가 대표키임을 선언한다. 그리고 @GeneratedValue를 붙여 대표키를 자동으로 1씩 증가시킨다. strategy=GerationType.IDENTITY를 추가해 데이터를 생성할 때 마다 DB가 알아서 id 값을 1씩 증사키도록 한다.  
+
 4.article 필드에 @ManyToOne 어노테이션을 붙여 Comment 엔티티와 이 필드가 가르키는 Article 엔티티를 **다대일 관계**로 설정한다.  
+
 5.외래키 매핑은 @JoinColumn 어노테이션을 사용하며 name 속성으로 매핑할 외래키 이름을 지정한다.  
+
 6.나머지 nickname,body 필드에는 @Column 어노테이션을 붙여 Comment 엔티티로 만들어질 테이블의 속성으로 설정한다.  
 
 ## 더미 데이터 추가하기
